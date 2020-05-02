@@ -37,7 +37,7 @@ class firstApp extends StatelessWidget{
           appBar: AppBar(
             title: Center(
               child:Text(
-                "I am the bar at first sight.",
+                "I am the bar at the beginning.",
                 style: TextStyle(
                   fontSize: 15,
                   color: Colors.amberAccent,
