@@ -39,7 +39,7 @@ class firstApp extends StatelessWidget{
               child:Text(
                 "I am the bar at the beginning.",
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 20,
                   color: Colors.amberAccent,
                 ),
               ),
