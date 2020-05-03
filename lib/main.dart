@@ -46,7 +46,10 @@ class firstApp extends StatelessWidget{
               ),
             ),
           ),
-          body: RyanFirstApp()
+          body: Padding(
+            padding: const EdgeInsets.all(20),
+            child:LoginWidget(),
+          )
       ),   //脚手架！
 
     );
@@ -54,46 +57,69 @@ class firstApp extends StatelessWidget{
 
 }
 
-class RyanFirstApp extends StatelessWidget {
+class LoginWidget extends StatefulWidget{
   @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Padding(
-        padding: const EdgeInsets.all(20),
-        child:ListView(
-          children: <Widget>[
-            productionItem("I need a doc","I need a doc to give me back to life.","http://5b0988e595225.cdn.sohucs.com/images/20170925/da432c8e13ec45c7960f4f065c91d769.jpeg"),
-            productionItem("I like stars","I want stars","http://b-ssl.duitang.com/uploads/item/201409/24/20140924224306_wWnRh.jpeg"),
-            productionItem("So there I am","Watch out!","http://m.51wendang.com/pic/b8961d94fc4bd0b2a9ba02e2/1-810-jpg_6-1080-0-0-1080.jpg"),
-        ],
-        )
-    );
+  State<StatefulWidget> createState() =>LoginWidgetState();
   }
-}
 
-class productionItem extends StatelessWidget{
-
-  final String text1;
-  final String text2;
-  final String srcI;
-
-  productionItem(this.text1,this.text2,this.srcI);
+class LoginWidgetState extends State<LoginWidget>{
+  GlobalKey<FormState> key= GlobalKey();
+  String username;
+  String userPassword;
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return Container(
-        decoration: BoxDecoration(
-//        border: Border.all()
-      ),
+    return Form(
+      key: key,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SizedBox(height: 10,),
-          Text(text1),
-          Text(text2),
-          Image.network(srcI),
+          TextFormField(
+            onSaved: (value)=> this.username = value,
+            decoration: InputDecoration(
+              icon: Icon(Icons.people,
+//                color: Colors.blueGrey,
+              ),
+              labelText: "UserAlias",
+//              labelStyle: (
+//                  TextStyle(color: Colors.blueGrey)
+//              ),
+              focusColor: Colors.blue,
+//              enabledBorder: ,
+            ),
+          ),
+          TextFormField(
+
+            onSaved: (value) =>this.userPassword = value,
+            obscureText: true,
+            decoration: InputDecoration(
+//              filled: true,
+//              isDense: true,
+//              fillColor: Colors.lightGreenAccent,
+//              fillColor 需要当filled：true才能用
+//              border: InputBorder() ,
+              icon: Icon(Icons.lock),
+              labelText: "UserPassword",
+              focusColor: Colors.blue,
+            ),
+          ),
+          SizedBox(height: 20,),
+          Container(
+            width: double.infinity,
+            height: 44,
+            child:RaisedButton(
+                child: Text("register",style: TextStyle(fontSize: 20, color: Colors.white),),
+                color: Colors.deepPurpleAccent,
+                onPressed: (){
+                    key.currentState.save();
+                    print("username: $username \n password: $userPassword");
+                },
+            ),
+          ),
+
         ],
 
       ),
+
     );
   }
 
